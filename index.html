@@ -3,136 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Світ Піфагора: Просто про складне</title>
+    <title>Світ Піфагора</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #2c3e50;
-            --accent: #e67e22;
-            --bg: #fdfdfd;
-            --text: #34495e;
-            --light-blue: #e8f4fd;
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            color: #2c3e50;
         }
-        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: var(--text); margin: 0; line-height: 1.6; }
-        header { background: var(--primary); color: white; padding: 40px 20px; text-align: center; border-bottom: 5px solid var(--accent); }
-        
-        /* Кнопки меню */
-        .nav-container { display: flex; justify-content: center; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
-        .nav-btn { 
-            padding: 12px 25px; border: none; border-radius: 25px; background: white; 
-            color: var(--primary); font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.3s;
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
         }
-        .nav-btn.active { background: var(--accent); color: white; }
-        .nav-btn:hover { transform: translateY(-2px); }
 
-        .container { max-width: 900px; width: 95%; margin: 0 auto 40px; }
-        .content-card { 
-            display: none; background: white; padding: 35px; border-radius: 20px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); animation: fadeIn 0.5s ease; 
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
         }
-        .content-card.active { display: block; }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        header p {
+            margin-top: 10px;
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
 
-        /* Фото та Біографія */
-        .portrait { width: 100%; max-width: 250px; border-radius: 15px; display: block; margin: 0 auto 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .fact-item { background: var(--light-blue); padding: 15px; border-radius: 10px; margin-bottom: 15px; border-left: 5px solid var(--accent); }
-        .fact-item b { color: var(--primary); font-size: 1.1rem; }
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: -25px;
+        }
 
-        /* Пояснення теореми */
-        .math-big { font-size: 2.8rem; text-align: center; color: var(--primary); margin: 20px 0; font-family: "Times New Roman", serif; font-style: italic; }
-        .math-big sup { font-size: 1.4rem; font-style: normal; }
-        .simple-box { background: #fff3e0; padding: 20px; border-radius: 10px; border: 1px dashed var(--accent); }
+        .nav-buttons button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
 
-        /* Калькулятор */
-        .calc-wrapper { text-align: center; background: #f4f7f6; padding: 30px; border-radius: 15px; }
-        input { padding: 12px; width: 85px; border: 2px solid #ddd; border-radius: 8px; margin: 10px; font-size: 1rem; text-align: center; }
-        .btn-go { background: #27ae60; color: white; border: none; padding: 15px 30px; border-radius: 8px; cursor: pointer; font-size: 1.1rem; font-weight: bold; transition: 0.2s; }
-        .btn-go:hover { background: #219150; }
+        .btn-orange { background-color: #e67e22; color: white; }
+        .btn-white { background-color: white; color: #2c3e50; border: 1px solid #ddd; }
+
+        .nav-buttons button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+        }
+
+        .profile-img {
+            display: block;
+            margin: 0 auto 30px;
+            width: 100%;
+            max-width: 280px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 35px;
+        }
+
+        .fact-card {
+            background-color: #f8fbff;
+            border-left: 4px solid #e67e22;
+            padding: 20px 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+
+        .fact-card strong {
+            color: #e67e22;
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Піфагор: Великий Вчитель</h1>
-    <p>Від олімпійських перемог до магії чисел</p>
-</header>
+    <header>
+        <h1>Піфагор: Великий Вчитель</h1>
+        <p>Від олімпійських перемог до магії чисел</p>
+    </header>
 
-<div class="nav-container">
-    <button class="nav-btn active" onclick="openTab('bio')">Біографія</button>
-    <button class="nav-btn" onclick="openTab('easy')">Як зрозуміти теорему?</button>
-    <button class="nav-btn" onclick="openTab('calc')">Калькулятор</button>
-</div>
+    <div class="nav-buttons">
+        <button class="btn-orange">Біографія</button>
+        <button class="btn-white">Як зрозуміти теорему?</button>
+        <button class="btn-white">Калькулятор</button>
+    </div>
 
-<div class="container">
-    <div id="bio" class="content-card active">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Pythagoras_in_the_School_of_Athens.jpg" alt="Піфагор" class="portrait">
+    <div class="container">
+        <img src="pifagor.jpg" alt="Портрет Піфагора" class="profile-img">
+
         <h2>Піфагор: Життя у трьох фактах</h2>
-        
-        <div class="fact-item">
-            <b>Мандрівник:</b> Народився на о. Самос (~570 р. до н.е.). 20 років навчався у жерців Єгипту та мудреців Вавилона, звідки привіз таємниці математики до Греції.
-        </div>
-        
-        <div class="fact-item">
-            <b>Засновник школи:</b> У місті Кротон створив таємний союз, де вірили, що «Число керує світом». Його учні першими поєднали музику, геометрію та астрономію в одну науку.
-        </div>
-        
-        <div class="fact-item">
-            <b>Філософ-атлет:</b> Першим в історії назвав себе «філософом». За легендами, був олімпійським чемпіоном із кулачного бою та вірив, що гармонія тіла так само важлива, як і гармонія розуму.
-        </div>
-    </div>
 
-    <div id="easy" class="content-card">
-        <h2>Теорема "на пальцях"</h2>
-        <p>Уяви прямокутний трикутник (як кут стола). Дві короткі сторони — це <b>катети</b> (a і b), а найдовша сторона — <b>гіпотенуза</b> (c).</p>
-        
-        <div class="simple-box">
-            Піфагор відкрив: якщо площу квадрата, побудованого на стороні <b>a</b>, додати до площі квадрата на стороні <b>b</b>, ми отримаємо точну площу квадрата на стороні <b>c</b>.
+        <div class="fact-card">
+            <strong>Мандрівник:</strong> Народився на о. Самос (~570 р. до н.е.). 20 років навчався у жерців Єгипту та мудреців Вавилона, звідки привіз таємні знання математики до Греції.
         </div>
 
-        <div class="math-big">a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup></div>
-        
-        <p><b>Чому це важливо?</b> Навіть якщо ти не математик, ця формула допомагає будівельникам будувати рівні стіни, навігаторам — прокладати шляхи в морі, а програмістам — створювати графіку в іграх!</p>
-    </div>
+        <div class="fact-card">
+            <strong>Засновник школи:</strong> У місті Кротон створив таємний союз, де вірили, що «Число керує світом». Його учні першими поєднали музику, геометрію та астрономію в одну науку.
+        </div>
 
-    <div id="calc" class="content-card">
-        <h2>Математичний помічник</h2>
-        <div class="calc-wrapper">
-            <p>Введіть довжини двох катетів:</p>
-            <input type="number" id="sideA" placeholder="Катет a">
-            <input type="number" id="sideB" placeholder="Катет b">
-            <br>
-            <button class="btn-go" onclick="calculate()">Порахувати гіпотенузу</button>
-            <div id="res" style="margin-top:20px; font-size: 1.8rem; color: #27ae60; font-weight: bold;"></div>
+        <div class="fact-card">
+            <strong>Філософ-атлет:</strong> Першим в історії назвав себе «філософом». За легендами, був олімпійським чемпіоном із кулачного бою та вірив, що гармонія тіла так само важлива, як і гармонія розуму.
         </div>
     </div>
-</div>
 
-<footer style="text-align: center; padding: 20px; color: #7f8c8d; font-size: 0.8rem;">
-    &copy; 2026 Проект про Піфагора | Створено для навчання
-</footer>
-
-<script>
-    function openTab(tabId) {
-        document.querySelectorAll('.content-card').forEach(c => c.classList.remove('active'));
-        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById(tabId).classList.add('active');
-        event.currentTarget.classList.add('active');
-    }
-
-    function calculate() {
-        const a = parseFloat(document.getElementById('sideA').value);
-        const b = parseFloat(document.getElementById('sideB').value);
-        const display = document.getElementById('res');
-        
-        if(a > 0 && b > 0) {
-            const c = Math.sqrt(a*a + b*b);
-            display.innerHTML = "c = " + c.toFixed(2);
-        } else {
-            display.innerHTML = "Введіть числа!";
-            display.style.color = "#e74c3c";
-        }
-    }
-</script>
+    <footer>
+        © 2026 Проєкт про Піфагора | Створено для навчання
+    </footer>
 
 </body>
 </html>
