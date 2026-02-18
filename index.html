@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Світ Піфагора</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f0f4f8;
-            color: #2c3e50;
+            color: #333;
         }
 
         header {
             background-color: #2c3e50;
             color: white;
-            padding: 60px 20px;
+            padding: 40px 20px;
             text-align: center;
         }
 
@@ -28,8 +28,7 @@
 
         header p {
             margin-top: 10px;
-            opacity: 0.8;
-            font-size: 1.1rem;
+            opacity: 0.9;
         }
 
         .nav-buttons {
@@ -44,67 +43,34 @@
             border: none;
             border-radius: 25px;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: bold;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            transition: all 0.2s;
             background-color: white;
             color: #2c3e50;
         }
 
-        /* Стиль для активної кнопки */
         .nav-buttons button.active {
             background-color: #e67e22;
             color: white;
-            border-color: #e67e22;
         }
 
         .nav-buttons button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0,0,0,0.15);
         }
 
         .container {
-            max-width: 850px;
+            max-width: 800px;
             margin: 50px auto;
             background: white;
             padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             min-height: 400px;
         }
 
-        .profile-img {
-            display: block;
-            margin: 0 auto 30px;
-            width: 100%;
-            max-width: 280px;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-
-        h2 {
-            text-align: center;
-            font-size: 1.8rem;
-            margin-bottom: 35px;
-        }
-
-        .fact-card {
-            background-color: #f8fbff;
-            border-left: 4px solid #e67e22;
-            padding: 20px 25px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            line-height: 1.6;
-        }
-
-        .fact-card strong {
-            color: #e67e22;
-            font-size: 1.1rem;
-            display: inline-block;
-            margin-right: 5px;
-        }
-
-        /* Ховаємо розділи, які не активні */
+        /* Приховуємо секції, які не вибрані */
         .content-section {
             display: none;
         }
@@ -113,18 +79,43 @@
             display: block;
         }
 
-        /* Стилі для калькулятора */
-        .calc-box {
+        .profile-img {
+            display: block;
+            margin: 0 auto 300px; /* Нижній відступ великий, щоб текст був окремо */
+            width: 100%;
+            max-width: 250px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #2c3e50;
             text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .fact-card {
+            background-color: #eef5fc;
+            border-left: 5px solid #e67e22;
             padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .fact-card strong {
+            color: #e67e22;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
         }
 
         input {
             padding: 10px;
             margin: 10px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            width: 100px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 80px;
         }
 
         .calc-btn {
@@ -132,14 +123,14 @@
             color: white;
             padding: 10px 20px;
             border: none;
-            border-radius: 8px;
+            border-radius: 5px;
             cursor: pointer;
         }
 
         footer {
             text-align: center;
-            padding: 30px;
-            color: #95a5a6;
+            padding: 40px;
+            color: #7f8c8d;
             font-size: 0.9rem;
         }
     </style>
@@ -152,47 +143,50 @@
     </header>
 
     <div class="nav-buttons">
-        <button id="btn-bio" class="active" onclick="showSection('bio')">Біографія</button>
-        <button id="btn-theory" onclick="showSection('theory')">Як зрозуміти теорему?</button>
-        <button id="btn-calc" onclick="showSection('calc')">Калькулятор</button>
+        <button id="btn-bio" class="active" onclick="showTab('bio')">Біографія</button>
+        <button id="btn-theory" onclick="showTab('theory')">Як зрозуміти теорему?</button>
+        <button id="btn-calc" onclick="showTab('calc')">Калькулятор</button>
     </div>
 
     <div class="container">
         
         <div id="bio" class="content-section active">
-            <img src="pifagor.jpg" alt="Портрет Піфагора" class="profile-img">
+            <img src="pifagor.jpg" alt="Піфагор" class="profile-img">
             <h2>Піфагор: Життя у трьох фактах</h2>
+
             <div class="fact-card">
-                <strong>Мандрівник:</strong> Народився на о. Самос (~570 р. до н.е.). 20 років навчався у жерців Єгипту та мудреців Вавилона.
+                <strong>Мандрівник:</strong>
+                Народився на о. Самос (~570 р. до н.е.). 20 років навчався у жерців Єгипту та мудреців Вавилона, звідки привіз таємні знання математики до Греції.
             </div>
+
             <div class="fact-card">
-                <strong>Засновник школи:</strong> У місті Кротон створив таємний союз, де вірили, що «Число керує світом».
+                <strong>Засновник школи:</strong>
+                У місті Кротон створив таємний союз, де вірили, що «Число керує світом». Його учні першими поєднали музику, геометрію та астрономію в одну науку.
             </div>
+
             <div class="fact-card">
-                <strong>Філософ-атлет:</strong> Першим назвав себе «філософом». Був олімпійським чемпіоном із кулачного бою.
+                <strong>Філософ-атлет:</strong>
+                Першим в історії назвав себе «філософом». За легендами, був олімпійським чемпіоном із кулачного бою та вірив, що гармонія тіла так само важлива, як і гармонія розуму.
             </div>
         </div>
 
         <div id="theory" class="content-section">
-            <h2>Як зрозуміти теорему?</h2>
+            <h2>Як працює теорема?</h2>
             <div class="fact-card">
-                У прямокутному трикутнику сума квадратів катетів дорівнює квадрату гіпотенузи. 
-                <br><br>
-                <center><strong>$$a^2 + b^2 = c^2$$</strong></center>
+                <strong>Формула: $a^2 + b^2 = c^2$</strong>
+                У прямокутному трикутнику сума квадратів катетів завжди дорівнює квадрату гіпотенузи. Це база всієї сучасної архітектури та навігації!
             </div>
-            <p style="text-align:center">Уявіть три квадрати, що притиснуті до сторін трикутника. Площа найбільшого дорівнює сумі двох менших.</p>
+            
         </div>
 
-        <div id="calc" class="content-section">
-            <h2>Калькулятор гіпотенузи</h2>
-            <div class="calc-box">
-                <p>Введіть довжину катетів:</p>
-                <input type="number" id="sideA" placeholder="Катет a">
-                <input type="number" id="sideB" placeholder="Катет b">
-                <br>
-                <button class="calc-btn" onclick="calculate()">Порахувати c</button>
-                <h3 id="result"></h3>
-            </div>
+        <div id="calc" class="content-section" style="text-align: center;">
+            <h2>Розрахунок гіпотенузи</h2>
+            <p>Введіть значення катетів:</p>
+            <input type="number" id="a" placeholder="Катет a">
+            <input type="number" id="b" placeholder="Катет b">
+            <br>
+            <button class="calc-btn" onclick="calcPythagoras()">Обчислити гіпотенузу (c)</button>
+            <h3 id="result" style="margin-top: 20px; color: #e67e22;"></h3>
         </div>
 
     </div>
@@ -202,33 +196,32 @@
     </footer>
 
     <script>
-        function showSection(sectionId) {
-            // Сховати всі секції
+        function showTab(tabId) {
+            // Приховуємо всі секції
             document.querySelectorAll('.content-section').forEach(section => {
                 section.classList.remove('active');
             });
-            // Деактивувати всі кнопки
+            // Знімаємо колір з усіх кнопок
             document.querySelectorAll('.nav-buttons button').forEach(btn => {
                 btn.classList.remove('active');
             });
-
-            // Показати обрану секцію
-            document.getElementById(sectionId).classList.add('active');
-            // Зробити кнопку активною (помаранчевою)
-            event.currentTarget.classList.add('active');
+            
+            // Показуємо потрібну секцію
+            document.getElementById(tabId).classList.add('active');
+            // Робимо натиснуту кнопку активною
+            document.getElementById('btn-' + tabId).classList.add('active');
         }
 
-        function calculate() {
-            const a = document.getElementById('sideA').value;
-            const b = document.getElementById('sideB').value;
+        function calcPythagoras() {
+            const a = document.getElementById('a').value;
+            const b = document.getElementById('b').value;
             if (a > 0 && b > 0) {
                 const c = Math.sqrt(a*a + b*b).toFixed(2);
-                document.getElementById('result').innerText = "Гіпотенуза c = " + c;
+                document.getElementById('result').innerText = "Результат: c = " + c;
             } else {
-                document.getElementById('result').innerText = "Введіть правильні числа";
+                document.getElementById('result').innerText = "Введіть додатні числа!";
             }
         }
     </script>
-
 </body>
 </html>
