@@ -12,6 +12,7 @@
             padding: 0;
             background-color: #f0f4f8;
             color: #2c3e50;
+            transition: all 0.3s ease;
         }
 
         header {
@@ -47,10 +48,14 @@
             font-weight: 600;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
+            background-color: white;
+            color: #2c3e50;
         }
 
-        .btn-orange { background-color: #e67e22; color: white; }
-        .btn-white { background-color: white; color: #2c3e50; border: 1px solid #ddd; }
+        .nav-buttons button.active {
+            background-color: #e67e22;
+            color: white;
+        }
 
         .nav-buttons button:hover {
             transform: translateY(-3px);
@@ -73,6 +78,14 @@
             max-width: 280px;
             border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .content-section {
+            display: none; /* Ховаємо всі секції спочатку */
+        }
+
+        .content-section.active {
+            display: block; /* Показуємо тільки активну */
         }
 
         h2 {
@@ -103,6 +116,24 @@
             color: #95a5a6;
             font-size: 0.9rem;
         }
+
+        /* Стилі для калькулятора */
+        .calc-input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .calc-btn {
+            background: #2c3e50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -113,32 +144,84 @@
     </header>
 
     <div class="nav-buttons">
-        <button class="btn-orange">Біографія</button>
-        <button class="btn-white">Як зрозуміти теорему?</button>
-        <button class="btn-white">Калькулятор</button>
+        <button id="btn-bio" class="active" onclick="showSection('bio')">Біографія</button>
+        <button id="btn-theory" onclick="showSection('theory')">Як зрозуміти теорему?</button>
+        <button id="btn-calc" onclick="showSection('calc')">Калькулятор</button>
     </div>
 
     <div class="container">
-        <img src="pifagor.jpg" alt="Портрет Піфагора" class="profile-img">
-
-        <h2>Піфагор: Життя у трьох фактах</h2>
-
-        <div class="fact-card">
-            <strong>Мандрівник:</strong> Народився на о. Самос (~570 р. до н.е.). 20 років навчався у жерців Єгипту та мудреців Вавилона, звідки привіз таємні знання математики до Греції.
+        
+        <div id="bio" class="content-section active">
+            <img src="pifagor.jpg" alt="Портрет Піфагора" class="profile-img">
+            <h2>Піфагор: Життя у трьох фактах</h2>
+            <div class="fact-card">
+                <strong>Мандрівник:</strong> Народився на о. Самос (~570 р. до н.е.). 20 років навчався у жерців Єгипту та мудреців Вавилона.
+            </div>
+            <div class="fact-card">
+                <strong>Засновник школи:</strong> У місті Кротон створив союз, де вірили, що «Число керує світом».
+            </div>
+            <div class="fact-card">
+                <strong>Філософ-атлет:</strong> Був олімпійським чемпіоном із кулачного бою та першим, хто назвав себе «філософом».
+            </div>
         </div>
 
-        <div class="fact-card">
-            <strong>Засновник школи:</strong> У місті Кротон створив таємний союз, де вірили, що «Число керує світом». Його учні першими поєднали музику, геометрію та астрономію в одну науку.
+        <div id="theory" class="content-section">
+            <h2>Теорема Піфагора</h2>
+            <p>У прямокутному трикутнику квадрат гіпотенузи дорівнює сумі квадратів катетів.</p>
+            <div class="fact-card" style="text-align: center; font-size: 1.5rem;">
+                <strong>a² + b² = c²</strong>
+            </div>
+            <p>Це означає, що якщо ви знаєте довжину двох сторін трикутника, ви завжди можете знайти третю!</p>
         </div>
 
-        <div class="fact-card">
-            <strong>Філософ-атлет:</strong> Першим в історії назвав себе «філософом». За легендами, був олімпійським чемпіоном із кулачного бою та вірив, що гармонія тіла так само важлива, як і гармонія розуму.
+        <div id="calc" class="content-section">
+            <h2>Онлайн Калькулятор</h2>
+            <p>Введіть катети (a та b), щоб знайти гіпотенузу (c):</p>
+            <input type="number" id="sideA" class="calc-input" placeholder="Сторона a">
+            <input type="number" id="sideB" class="calc-input" placeholder="Сторона b">
+            <button class="calc-btn" onclick="calculate()">Розрахувати</button>
+            <h3 id="result" style="text-align: center; margin-top: 20px; color: #e67e22;"></h3>
         </div>
+
     </div>
 
     <footer>
         © 2026 Проєкт про Піфагора | Створено для навчання
     </footer>
+
+    <script>
+        // Функція для перемикання розділів
+        function showSection(sectionId) {
+            // Ховаємо всі секції
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            // Знімаємо колір з усіх кнопок
+            document.querySelectorAll('.nav-buttons button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Показуємо потрібну секцію
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Робимо кнопку помаранчевою (активною)
+            if(sectionId === 'bio') document.getElementById('btn-bio').classList.add('active');
+            if(sectionId === 'theory') document.getElementById('btn-theory').classList.add('active');
+            if(sectionId === 'calc') document.getElementById('btn-calc').classList.add('active');
+        }
+
+        // Функція для калькулятора
+        function calculate() {
+            const a = document.getElementById('sideA').value;
+            const b = document.getElementById('sideB').value;
+            if (a > 0 && b > 0) {
+                const c = Math.sqrt(a*a + b*b).toFixed(2);
+                document.getElementById('result').innerText = "Гіпотенуза c = " + c;
+            } else {
+                document.getElementById('result').innerText = "Будь ласка, введіть додатні числа";
+            }
+        }
+    </script>
 
 </body>
 </html>
