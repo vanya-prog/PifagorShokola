@@ -12,7 +12,6 @@
             padding: 0;
             background-color: #f0f4f8;
             color: #2c3e50;
-            transition: all 0.3s ease;
         }
 
         header {
@@ -52,9 +51,11 @@
             color: #2c3e50;
         }
 
+        /* Стиль для активної кнопки */
         .nav-buttons button.active {
             background-color: #e67e22;
             color: white;
+            border-color: #e67e22;
         }
 
         .nav-buttons button:hover {
@@ -69,6 +70,7 @@
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            min-height: 400px;
         }
 
         .profile-img {
@@ -78,14 +80,6 @@
             max-width: 280px;
             border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-
-        .content-section {
-            display: none; /* Ховаємо всі секції спочатку */
-        }
-
-        .content-section.active {
-            display: block; /* Показуємо тільки активну */
         }
 
         h2 {
@@ -110,29 +104,43 @@
             margin-right: 5px;
         }
 
+        /* Ховаємо розділи, які не активні */
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        /* Стилі для калькулятора */
+        .calc-box {
+            text-align: center;
+            padding: 20px;
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            width: 100px;
+        }
+
+        .calc-btn {
+            background: #2c3e50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
         footer {
             text-align: center;
             padding: 30px;
             color: #95a5a6;
             font-size: 0.9rem;
-        }
-
-        /* Стилі для калькулятора */
-        .calc-input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .calc-btn {
-            background: #2c3e50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
         }
     </style>
 </head>
@@ -158,29 +166,33 @@
                 <strong>Мандрівник:</strong> Народився на о. Самос (~570 р. до н.е.). 20 років навчався у жерців Єгипту та мудреців Вавилона.
             </div>
             <div class="fact-card">
-                <strong>Засновник школи:</strong> У місті Кротон створив союз, де вірили, що «Число керує світом».
+                <strong>Засновник школи:</strong> У місті Кротон створив таємний союз, де вірили, що «Число керує світом».
             </div>
             <div class="fact-card">
-                <strong>Філософ-атлет:</strong> Був олімпійським чемпіоном із кулачного бою та першим, хто назвав себе «філософом».
+                <strong>Філософ-атлет:</strong> Першим назвав себе «філософом». Був олімпійським чемпіоном із кулачного бою.
             </div>
         </div>
 
         <div id="theory" class="content-section">
-            <h2>Теорема Піфагора</h2>
-            <p>У прямокутному трикутнику квадрат гіпотенузи дорівнює сумі квадратів катетів.</p>
-            <div class="fact-card" style="text-align: center; font-size: 1.5rem;">
-                <strong>a² + b² = c²</strong>
+            <h2>Як зрозуміти теорему?</h2>
+            <div class="fact-card">
+                У прямокутному трикутнику сума квадратів катетів дорівнює квадрату гіпотенузи. 
+                <br><br>
+                <center><strong>$$a^2 + b^2 = c^2$$</strong></center>
             </div>
-            <p>Це означає, що якщо ви знаєте довжину двох сторін трикутника, ви завжди можете знайти третю!</p>
+            <p style="text-align:center">Уявіть три квадрати, що притиснуті до сторін трикутника. Площа найбільшого дорівнює сумі двох менших.</p>
         </div>
 
         <div id="calc" class="content-section">
-            <h2>Онлайн Калькулятор</h2>
-            <p>Введіть катети (a та b), щоб знайти гіпотенузу (c):</p>
-            <input type="number" id="sideA" class="calc-input" placeholder="Сторона a">
-            <input type="number" id="sideB" class="calc-input" placeholder="Сторона b">
-            <button class="calc-btn" onclick="calculate()">Розрахувати</button>
-            <h3 id="result" style="text-align: center; margin-top: 20px; color: #e67e22;"></h3>
+            <h2>Калькулятор гіпотенузи</h2>
+            <div class="calc-box">
+                <p>Введіть довжину катетів:</p>
+                <input type="number" id="sideA" placeholder="Катет a">
+                <input type="number" id="sideB" placeholder="Катет b">
+                <br>
+                <button class="calc-btn" onclick="calculate()">Порахувати c</button>
+                <h3 id="result"></h3>
+            </div>
         </div>
 
     </div>
@@ -190,27 +202,22 @@
     </footer>
 
     <script>
-        // Функція для перемикання розділів
         function showSection(sectionId) {
-            // Ховаємо всі секції
+            // Сховати всі секції
             document.querySelectorAll('.content-section').forEach(section => {
                 section.classList.remove('active');
             });
-            // Знімаємо колір з усіх кнопок
+            // Деактивувати всі кнопки
             document.querySelectorAll('.nav-buttons button').forEach(btn => {
                 btn.classList.remove('active');
             });
-            
-            // Показуємо потрібну секцію
+
+            // Показати обрану секцію
             document.getElementById(sectionId).classList.add('active');
-            
-            // Робимо кнопку помаранчевою (активною)
-            if(sectionId === 'bio') document.getElementById('btn-bio').classList.add('active');
-            if(sectionId === 'theory') document.getElementById('btn-theory').classList.add('active');
-            if(sectionId === 'calc') document.getElementById('btn-calc').classList.add('active');
+            // Зробити кнопку активною (помаранчевою)
+            event.currentTarget.classList.add('active');
         }
 
-        // Функція для калькулятора
         function calculate() {
             const a = document.getElementById('sideA').value;
             const b = document.getElementById('sideB').value;
@@ -218,7 +225,7 @@
                 const c = Math.sqrt(a*a + b*b).toFixed(2);
                 document.getElementById('result').innerText = "Гіпотенуза c = " + c;
             } else {
-                document.getElementById('result').innerText = "Будь ласка, введіть додатні числа";
+                document.getElementById('result').innerText = "Введіть правильні числа";
             }
         }
     </script>
